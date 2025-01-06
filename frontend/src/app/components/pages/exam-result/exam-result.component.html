@@ -1,0 +1,82 @@
+<div class="container mt-4">
+    <h2>Exam Result Entry</h2>
+
+    <!-- Success Message -->
+    <div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" (click)="message=''" aria-label="Close"></button>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error }}
+        <button type="button" class="btn-close" (click)="error=''" aria-label="Close"></button>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()" #examForm="ngForm" class="mt-4">
+        <!-- Student ID -->
+        <div class="mb-3">
+            <label for="StudentId" class="form-label">Student ID:</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="StudentId"
+                name="StudentId"
+                [(ngModel)]="examData.StudentId"
+                required
+                min="1">
+        </div>
+
+        <!-- Course Year -->
+        <div class="mb-3">
+            <label for="CourseYear" class="form-label">Course Year:</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="CourseYear"
+                name="CourseYear"
+                [(ngModel)]="examData.CourseYear"
+                required
+                min="2000">
+        </div>
+
+        <!-- Module Code -->
+        <div class="mb-3">
+            <label for="ModuleCode" class="form-label">Module Code:</label>
+            <select 
+                class="form-select" 
+                id="ModuleCode"
+                name="ModuleCode"
+                [(ngModel)]="examData.ModuleCode"
+                required>
+                <option value="">Select Module Code</option>
+                <option *ngFor="let code of moduleCodes" [value]="code">
+                    {{code}}
+                </option>
+            </select>
+        </div>
+
+        <!-- Marks -->
+        <div class="mb-3">
+            <label for="Marks" class="form-label">Marks:</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="Marks"
+                name="Marks"
+                [(ngModel)]="examData.Marks"
+                required
+                min="0"
+                max="100">
+            <div class="form-text text-muted">Enter marks between 0 and 100</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!examForm.form.valid || !isValidMarks()">
+            Save Exam Result
+        </button>
+    </form>
+</div>

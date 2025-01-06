@@ -1,0 +1,103 @@
+<div class="container">
+    <h2>Course Details</h2>
+    
+    <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+      <!-- Course Name -->
+      <div class="mb-3">
+        <label for="CourseName" class="form-label">Course Name:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="CourseName"
+          name="CourseName"
+          [(ngModel)]="courseData.CourseName"
+          required>
+      </div>
+  
+      <!-- Course Type -->
+      <div class="mb-3">
+        <label for="CourseType" class="form-label">Course Type:</label>
+        <select 
+          class="form-select" 
+          id="CourseType"
+          name="CourseType"
+          [(ngModel)]="courseData.CourseType"
+          required>
+          <option value="">Select Course Type</option>
+          <option *ngFor="let type of courseTypeOptions" [value]="type">
+            {{type}}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Duration -->
+      <div class="mb-3">
+        <label for="Duration" class="form-label">Duration:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="Duration"
+          name="Duration"
+          [(ngModel)]="courseData.Duration"
+          placeholder="e.g., 6 months"
+          required>
+      </div>
+  
+      <!-- Medium -->
+      <div class="mb-3">
+        <label for="Medium" class="form-label">Medium:</label>
+        <select 
+          class="form-select" 
+          id="Medium"
+          name="Medium"
+          [(ngModel)]="courseData.Medium"
+          required>
+          <option value="">Select Medium</option>
+          <option *ngFor="let medium of mediumOptions" [value]="medium">
+            {{medium}}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Course Level -->
+      <div class="mb-3">
+        <label for="CourseLevel" class="form-label">Course Level:</label>
+        <select 
+          class="form-select" 
+          id="CourseLevel"
+          name="CourseLevel"
+          [(ngModel)]="courseData.CourseLevel"
+          required>
+          <option value="">Select Level</option>
+          <option *ngFor="let level of courseLevelOptions" [value]="level">
+            {{level}}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Active Status -->
+      <div class="mb-3 form-check">
+        <input 
+          type="checkbox" 
+          class="form-check-input" 
+          id="Active"
+          name="Active"
+          [(ngModel)]="courseData.Active">
+        <label class="form-check-label" for="Active">Active</label>
+      </div>
+  
+      <!-- User -->
+      <div class="mb-3">
+        <label for="User" class="form-label">User:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="User"
+          name="User"
+          [(ngModel)]="courseData.User"
+          required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Save Course</button>
+    </form>
+  </div>
